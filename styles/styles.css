@@ -1,0 +1,105 @@
+* {
+  font-family: "Hina Mincho", serif;
+  font-size: 20px;
+  margin-left: 30px;
+  --colorone: #cbbfc7;
+  --colortwo: #8c6f82;
+  --colortitles: #8e577b;
+  --colortitlestwo: #5f8d5f;
+  --colorthree: #c6d9c3;
+  --colorfour: #a9f2a0;
+  --colorfive: #728c6f;
+}
+
+body {
+  margin-left: 30px;
+  margin-right: 50px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.favorite-series {
+  background-color: rgb(156, 54, 54) !important;
+  color: #cbbfc7;
+}
+.main-title {
+  font-family: "Satisfy", cursive;
+  font-size: 70px;
+  margin-left: 30px;
+  margin-top: 20px;
+  color: #8e577b;
+}
+
+.flexsearcher {
+  display: flex;
+  flex-direction: row;
+}
+
+#searchfieldinput {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+#searchbutton {
+  background-color: #5f8d5f;
+  color: white;
+  font-weight: 600;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 2px;
+  border-radius: 4px;
+}
+
+.favourite-title {
+  margin-left: 30px;
+  font-size: 20px;
+}
+
+.flexcontainersfavandseries {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column: span 2;
+  align-items: baseline;
+  text-align: justify;
+}
+
+.favseriescss {
+  display: inline-block;
+  margin-left: 30px;
+  width: 250px;
+  height: 100%;
+  background-color: #d0cad9;
+}
+
+.flexcontainerseries {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  text-align: center;
+  align-items: center;
+  width: 60vw;
+  height: 100%;
+  flex: 1;
+}
+
+.csseditseries {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+  list-style-type: none;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #c6d9c3;
+}
+.csseditseries:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.csstextseries {
+  text-align: center;
+  justify-content: auto;
+  align-items: auto;
+}

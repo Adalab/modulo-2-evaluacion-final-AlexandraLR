@@ -4,30 +4,48 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lexatin Films</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hina+Mincho&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/reset.css" />
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <title>Lexatin Series</title>
   </head>
   <body>
-    <head>
-      Buscador de series
-    </head>
-    <form class="searchfield">
+    <header>
+      <h1 class="main-title">Buscador de series</h1>
+    </header>
+    <div class="flexsearcher">
+      <form class="searchfield">
+        <input
+          class="js_searchfieldinput"
+          type="text"
+          name="name"
+          id="searchfieldinput"
+          placeholder="Introduce el nombre de una serie..."
+        />
+      </form>
       <input
-        class="js_searchfieldinput"
-        type="text"
-        name="name"
-        id="searchfieldinput"
-        placeholder="Introduce el nombre de una serie..."
+        type="button"
+        value="Search"
+        id="searchbutton"
+        class="js_searchbutton"
       />
-    </form>
-    <input
-      type="button"
-      value="Search"
-      id="searchbutton"
-      class="js_searchbutton"
-    />
-    <h3>Mis series favoritas</h3>
-    <ul class="js_favseries"></ul>
-    <ul class="js_seriescontainer"></ul>
+    </div>
+    <h3 class="favourite-title">Mis series favoritas</h3>
+    <div class="flexcontainersfavandseries">
+      <ul class="js_favseries favseriescss"></ul>
+      <ul class="js_seriescontainer flexcontainerseries"></ul>
+    </div>
 
     <script src="./js/main.js"></script>
   </body>

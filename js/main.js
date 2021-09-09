@@ -14,7 +14,6 @@ let listSeriesFav= [];
 function getFromApi(event) {
     inputValue = inputSearch.value;
     event.preventDefault();
-    console.log(inputValue);
     fetch(
       '//api.tvmaze.com/search/shows?q='+ inputValue
     )
@@ -25,25 +24,75 @@ function getFromApi(event) {
     });
 }
 
+function handleSeries(ev) {
+    // const clickedSeries = ev.currentTarget.id;
+    const clickedSeries = ev.path[1].id;
 
-function paintSeries(list, output) {
-    let html = '';
-    for (const itemSeries of list) {
-        console.log(itemSeries);
-        html += `<li class="" id="${itemSeries.show.id}">`;
-        // añadido if anidado para que me muestre la imagen default si no tiene imagen de serie
-        html += `<img class="seriesImage" src="${itemSeries.show.image !== null ? itemSeries.show.image.medium : defaultImagePath}" alt="series image"/>`
-        html += `</li>`
-        html += `<h2>${itemSeries.show.name}</h2>`;
-  
+    const clickedElement = listSeries.find((series) => {
+      return series.show.id == clickedSeries;
+    });
+
+    const stockedFavorites = listSeriesFav.findIndex((fav) => {
+         return fav.show.id == clickedSeries;
+    });
+    if (stockedFavorites === -1) {
+        listSeriesFav.push(clickedElement);
+    } else {
+        listSeriesFav.splice(stockedFavorites, 1);
     }
-    output.innerHTML = html;
+    console.log(listSeriesFav);
+    paintSeries( listSeriesFav, outputFavList ); 
+}
+
+function listenSeries() {
+    const listenSeries = document.querySelectorAll('.js-series');
+    console.log(listenSeries);
+    for (const seriesEl of listenSeries) {
+        seriesEl.addEventListener('click', handleSeries);
+    }
 }
 
 
-function getFavStorage (){
+// function isFavorite(listSeries) {
+//     const stockedFavorites = favorites.find((fav) => {
+//      console.log(fav, listSeries);
+//       return fav.id === series.id;
+//     });
+//     if (stockedFavorites === undefined) {
+//       return false;
+//     } else {
+//       return true;
+//     }
+// }
+
+function paintSeries(list, output) {
+    let html = '';
+    // let favClass = '';
+     for (const itemSeries of list) {
+    //     const isFav = isFavorite(listSeries);
+    //     if (isFav) {
+    //       favClass = 'favorite-series';
+    //     } else {
+    //       favClass = '';
+    //     }
+    console.log('paint' + itemSeries);
+        html += `<li class="js-series csseditseries" id="${itemSeries.show.id}">`;
+        // añadido if anidado para que me muestre la imagen default si no tiene imagen de serie
+        html += `<img class="seriesImage" src="${itemSeries.show.image !== null ? itemSeries.show.image.medium : defaultImagePath}" alt="series image"/>`
+        html += `<h2 class="csstextseries">${itemSeries.show.name}</h2></li>`
+    }
+    output.innerHTML = html;
+    listenSeries();
+}
+
+
+function buildListFav (){
     let ls = localStorage.getItem('listFav');
-    listSeriesFav = JSON.parse(ls);
+    if(ls !== null)
+    {
+        listSeriesFav = JSON.parse(ls);
+        paintSeries( listSeriesFav, outputFavList ); 
+    }
 }
 
 // function buildStorage()
@@ -59,6 +108,4 @@ function getFavStorage (){
 
 // para que vayan saliendo las series conforme escribes, que queda más guay
 inputSearch.addEventListener ('keyup', getFromApi );
-
-getFavStorage();
-paintSeries( listSeriesFav, outputFavList ); 
+buildListFav();
