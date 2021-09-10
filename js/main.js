@@ -131,7 +131,7 @@ function cleanLS (){
     //Añadimos pantalla de verificación de borrado de datos de localstorage
     let buttonConfirm = confirm("¿Está seguro de que desea eliminar toda la lista de favoritos?");
     // Para que no siga borrando al darle a cancelar al pop up, le ponemos return en void, eso nos saca de la función sin cumplir lo siguiente
-    if (buttonConfirm) return;
+    if (!buttonConfirm) return;
     localStorage.removeItem(keyStorageFav);
     listSeriesFav = [];
     paintSeries( listSeriesFav, outputFavList, true );
