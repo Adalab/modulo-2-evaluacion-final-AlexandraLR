@@ -40,16 +40,18 @@ function handleSeries(ev) {
     const stockedFavorites = listSeriesFav.findIndex((fav) => {
          return fav.show.id == clickedSeries;
     });
-
+    // comprobamos si está o no en favoritos para hacer push en caso de que no esté o splice si está, porque si está es que el click es el de sacarla de la lista
     if (stockedFavorites === -1) {
         listSeriesFav.push(clickedElement);
     } else {
-        console.log('hola')
         listSeriesFav.splice(stockedFavorites, 1);
     }
+
+    // activamos la función para que lo guarde
     storageListFav();
 }
 
+// LISTENER DE LAS SERIES CLICKADAS
 function listenSeries() {
     const listenSeries = document.querySelectorAll('.js-series');
     console.log(listenSeries);
@@ -58,17 +60,20 @@ function listenSeries() {
     }
 }
 
+// Comprobación de si es o no favorito, por ID para usarla después.
 function isFavorite(element) {
     return listSeriesFav.find((fav) => {
         return fav.show.id === element.show.id;
     });
 }
 
+
+// La función paintSeries, función principal de la composición del HTML, se ha tenido que dividir en dos, para sacar por un lado la lista de FAVs con sus estilos y la lista de series con los suyos. 
 function paintSeries(list, output, isFav) {
     let html = '';
 
     for (const itemSeries of list) {
-
+    // Si el item es Fav, te saca la función con las clases de fav, sino, las de List normal.
         html += isFav ? buildHtmlListFav(itemSeries) : buildHtmlList(itemSeries);
     }
     output.innerHTML = html;
@@ -103,7 +108,7 @@ function buildHtmlListFav(itemSeries)
     return html;
 }
  
- 
+//SACAR DEL LOCAL STORAGE AL INICIALIZAR LA PÁGINA
 function buildListFav (){
     let ls = localStorage.getItem(keyStorageFav);
     if(ls !== null)
@@ -113,12 +118,15 @@ function buildListFav (){
     }
 }
 
+// GUARDAR EN LOCAL STORAGE
 function storageListFav (){
     localStorage.setItem(keyStorageFav, JSON.stringify(listSeriesFav));
     paintSeries( listSeriesFav, outputFavList, true ); 
     paintSeries( listSeries, seriesContainer ); 
 }
 
+
+// BORAR EL LOCAL STORAGE
 function cleanLS (){
     //Añadimos pantalla de verificación de borrado de datos de localstorage
     let buttonConfirm = confirm("¿Está seguro de que desea eliminar toda la lista de favoritos?");
