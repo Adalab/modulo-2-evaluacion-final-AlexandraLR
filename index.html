@@ -16,6 +16,10 @@
       href="https://fonts.googleapis.com/css2?family=Hina+Mincho&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    />
     <link rel="stylesheet" href="./styles/reset.css" />
     <link rel="stylesheet" href="./styles/styles.css" />
     <title>Lexatin Series</title>
@@ -34,14 +38,17 @@
           placeholder="Introduce el nombre de una serie..."
         />
       </form>
-      <input
+      <!-- <input
         type="button"
         value="Search"
         id="searchbutton"
         class="js_searchbutton"
-      />
+      /> -->
     </div>
     <h3 class="favourite-title">Mis series favoritas</h3>
+    <button class="reset-button js_resetfavs">
+      <i class="fas fa-trash-alt"></i> clean favs
+    </button>
     <div class="flexcontainersfavandseries">
       <ul class="js_favseries favseriescss"></ul>
       <ul class="js_seriescontainer flexcontainerseries"></ul>

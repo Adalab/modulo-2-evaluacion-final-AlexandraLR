@@ -3,8 +3,12 @@
 const seriesContainer = document.querySelector('.js_seriescontainer');
 const outputFavList = document.querySelector('.js_favseries');
 const inputSearch = document.querySelector('.js_searchfieldinput');
-const buttonSearch = document.querySelector('.js_searchbutton');
+// const buttonSearch = document.querySelector('.js_searchbutton');
+const buttonReset = document.querySelector('.js_resetfavs');
+
 const defaultImagePath = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
+
+const keyStorageFav = 'listFav';
 
 let inputValue = ''; 
 let listSeries = [];
@@ -25,13 +29,14 @@ function getFromApi(event) {
 }
 
 function handleSeries(ev) {
-    // const clickedSeries = ev.currentTarget.id;
     const clickedSeries = ev.path[1].id;
 
+    // Con el id del elemento clicado buscamos la pelicula en la lista de peliculas
     const clickedElement = listSeries.find((series) => {
       return series.show.id == clickedSeries;
     });
 
+    // Buscamos el indice de la peli en la lista de favoritas
     const stockedFavorites = listSeriesFav.findIndex((fav) => {
          return fav.show.id == clickedSeries;
     });
@@ -40,8 +45,7 @@ function handleSeries(ev) {
     } else {
         listSeriesFav.splice(stockedFavorites, 1);
     }
-    console.log(listSeriesFav);
-    paintSeries( listSeriesFav, outputFavList ); 
+    storageListFav();
 }
 
 function listenSeries() {
@@ -52,42 +56,40 @@ function listenSeries() {
     }
 }
 
-
-// function isFavorite(listSeries) {
-//     const stockedFavorites = favorites.find((fav) => {
-//      console.log(fav, listSeries);
-//       return fav.id === series.id;
-//     });
-//     if (stockedFavorites === undefined) {
-//       return false;
-//     } else {
-//       return true;
-//     }
-// }
+function isFavorite(element) {
+    return listSeriesFav.find((fav) => {
+        return fav.show.id === element.show.id;
+    });
+}
 
 function paintSeries(list, output) {
     let html = '';
-    // let favClass = '';
-     for (const itemSeries of list) {
-    //     const isFav = isFavorite(listSeries);
-    //     if (isFav) {
-    //       favClass = 'favorite-series';
-    //     } else {
-    //       favClass = '';
-    //     }
-    console.log('paint' + itemSeries);
-        html += `<li class="js-series csseditseries" id="${itemSeries.show.id}">`;
+    let favClass = '';
+    let imageClass= '';
+    let textClass= '';
+    for (const itemSeries of list) {
+        const isFav = isFavorite(itemSeries);
+        if (isFav !== undefined) {
+          favClass = 'favorite-series';
+          imageClass = 'favourite-image'
+          textClass = 'favourite-text'
+        } else {
+          favClass = '';
+        }
+    // console.log('paint' + itemSeries);
+        html += `<li class="js-series ${favClass} csseditseries" id="${itemSeries.show.id}">`;
         // añadido if anidado para que me muestre la imagen default si no tiene imagen de serie
-        html += `<img class="seriesImage" src="${itemSeries.show.image !== null ? itemSeries.show.image.medium : defaultImagePath}" alt="series image"/>`
-        html += `<h2 class="csstextseries">${itemSeries.show.name}</h2></li>`
+        html += `<img class="seriesImage ${imageClass}" src="${itemSeries.show.image !== null ? itemSeries.show.image.medium : defaultImagePath}" alt="series image"/>`
+        html += `<h2 class="csstextseries ${textClass}">${itemSeries.show.name}</h2></li>`
     }
     output.innerHTML = html;
     listenSeries();
 }
 
 
+
 function buildListFav (){
-    let ls = localStorage.getItem('listFav');
+    let ls = localStorage.getItem(keyStorageFav);
     if(ls !== null)
     {
         listSeriesFav = JSON.parse(ls);
@@ -95,17 +97,23 @@ function buildListFav (){
     }
 }
 
-// function buildStorage()
-// {
-//     localStorage.setItem('listFav', JSON.stringify(listSeriesFav));
-// }
+function storageListFav (){
+    console.log(listSeriesFav);
+    localStorage.setItem(keyStorageFav, JSON.stringify(listSeriesFav));
+    paintSeries( listSeriesFav, outputFavList ); 
+    paintSeries( listSeries, seriesContainer ); 
 
+}
 
-// EL CÓDIGO EMPIEZA AQUÍ
+function cleanLS (){
+    localStorage.removeItem(keyStorageFav);
+    listSeriesFav = [];
+    paintSeries( listSeriesFav, outputFavList );
+    paintSeries( listSeries, seriesContainer );  
+}
 
-//Evento que hace que funcione el botón
-// buttonSearch.addEventListener ('click', getFromApi ); 
 
 // para que vayan saliendo las series conforme escribes, que queda más guay
 inputSearch.addEventListener ('keyup', getFromApi );
+buttonReset.addEventListener ('click', cleanLS );
 buildListFav();

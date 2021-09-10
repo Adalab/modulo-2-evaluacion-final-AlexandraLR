@@ -1,3 +1,7 @@
+:root {
+  background-color: #d0cad9;
+}
+
 * {
   font-family: "Hina Mincho", serif;
   font-size: 20px;
@@ -21,6 +25,8 @@ body {
 .favorite-series {
   background-color: rgb(156, 54, 54) !important;
   color: #cbbfc7;
+  justify-content: center;
+  align-items: center;
 }
 .main-title {
   font-family: "Satisfy", cursive;
@@ -44,7 +50,7 @@ body {
 #searchbutton {
   background-color: #5f8d5f;
   color: white;
-  font-weight: 600;
+  font-weight: 400;
   border: none;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -52,7 +58,16 @@ body {
   border-radius: 4px;
 }
 
+.reset-button {
+  background-color: #5f8d5f;
+  color: white;
+  font-weight: 400;
+  border: none;
+  border-radius: 4px;
+}
+
 .favourite-title {
+  margin-bottom: 2px;
   margin-left: 30px;
   font-size: 20px;
 }
@@ -61,13 +76,17 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column: span 2;
-  align-items: baseline;
+  align-items: center;
   text-align: justify;
 }
 
 .favseriescss {
-  display: inline-block;
-  margin-left: 30px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
   width: 250px;
   height: 100%;
   background-color: #d0cad9;
@@ -89,9 +108,10 @@ body {
   flex-direction: column;
   margin-left: 30px;
   list-style-type: none;
-  margin-top: 20px;
+  margin-top: 5px;
   margin-bottom: 20px;
   padding: 20px;
+  padding-bottom: 30px;
   background-color: #c6d9c3;
 }
 .csseditseries:hover {
@@ -99,6 +119,7 @@ body {
   transform: scale(1.1);
 }
 .csstextseries {
+  margin-top: 10px;
   text-align: center;
   justify-content: auto;
   align-items: auto;
