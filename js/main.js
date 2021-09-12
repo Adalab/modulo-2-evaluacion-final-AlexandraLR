@@ -5,6 +5,7 @@ const outputFavList = document.querySelector('.js_favseries');
 const inputSearch = document.querySelector('.js_searchfieldinput');
 // const buttonSearch = document.querySelector('.js_searchbutton');
 const buttonReset = document.querySelector('.js_resetfavs');
+const eraseFavs = document.querySelector('.js_resetfavs');
 
 const defaultImagePath = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
 
@@ -112,9 +113,9 @@ function buildHtmlListFav(itemSeries)
     // añadido if anidado para que me muestre la imagen default si no tiene imagen de serie
     html += `<img class="${imageClass}" src="${itemSeries.show.image !== null ? itemSeries.show.image.medium : defaultImagePath}" alt="series image"/>`
     html += `<h2 class="csstextseries ${textClass}">${itemSeries.show.name}</h2></li>`
-    html += `<button class="js-series-close closeButton">
+    html += `<button class="closeButton js-series-close">
     <i class="fas fa-trash-alt"></i>
-  </button></li>`
+  </button>`
     html += `</div>`
     return html;
 }
