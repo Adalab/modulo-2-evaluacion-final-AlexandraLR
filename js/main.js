@@ -86,6 +86,7 @@ function paintSeries(list, output, isFav) {
     }
     output.innerHTML = html;
     listenSeries();
+    listenCloseSeries();
 }
 
 function buildHtmlList(itemSeries)
@@ -113,7 +114,7 @@ function buildHtmlListFav(itemSeries)
     // añadido if anidado para que me muestre la imagen default si no tiene imagen de serie
     html += `<img class="${imageClass}" src="${itemSeries.show.image !== null ? itemSeries.show.image.medium : defaultImagePath}" alt="series image"/>`
     html += `<h2 class="csstextseries ${textClass}">${itemSeries.show.name}</h2></li>`
-    html += `<button class="closeButton js-series-close">
+    html += `<button class="closeButton js-series-close" id="${itemSeries.show.id}">
     <i class="fas fa-trash-alt"></i>
   </button>`
     html += `</div>`

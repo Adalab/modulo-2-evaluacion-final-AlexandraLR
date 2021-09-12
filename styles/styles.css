@@ -27,7 +27,7 @@ body {
 }
 
 .favorite-image {
-  height: 80px;
+  height: 100px;
 }
 
 .flexboxfav {
@@ -93,15 +93,17 @@ body {
 .reset-button {
   background-color: #5f8d5f;
   color: white;
-  font-weight: 400;
+  font-weight: bold;
   border: none;
   border-radius: 4px;
+  justify-content: baseline;
 }
 
 .reset-button:hover {
   cursor: pointer;
   background-color: white;
   color: #5f8d5f;
+  border: 1px solid #5f8d5f;
 }
 
 .favourite-title {
