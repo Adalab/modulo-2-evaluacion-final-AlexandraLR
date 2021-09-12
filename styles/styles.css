@@ -1,9 +1,5 @@
 :root {
-  background-color: #ffe9f5;
-  --colorone: #581845;
-  --colortwo: #900c3f;
-  --colortitles: #c70039;
-  --colorfive: #c9496d;
+  /* background-color: #ffe9f5; */
 }
 
 * {
@@ -13,6 +9,7 @@
 }
 
 body {
+  background-image: url(../images/wp2871799.jpg);
   margin-left: 30px;
   margin-right: 50px;
   margin-top: 30px;
@@ -39,11 +36,11 @@ body {
   margin-bottom: 20px;
   padding: 20px;
   padding-bottom: 30px;
-  background-color: #5f8d5f;
+  background-color: #af8cb6;
 }
 
 .closeButton {
-  background-color: #5f8d5f;
+  background-color: #af8cb6;
   color: black;
   border: none;
 }
@@ -91,7 +88,7 @@ body {
 } */
 
 .reset-button {
-  background-color: #5f8d5f;
+  background-color: #714c72;
   color: white;
   font-weight: bold;
   border: none;
@@ -102,8 +99,8 @@ body {
 .reset-button:hover {
   cursor: pointer;
   background-color: white;
-  color: #5f8d5f;
-  border: 1px solid #5f8d5f;
+  color: #714c72;
+  border: 1px solid #714c72;
 }
 
 .favourite-title {
@@ -147,7 +144,7 @@ body {
   margin-bottom: 20px;
   padding: 20px;
   padding-bottom: 30px;
-  background-color: #c6d9c3;
+  background-color: #83b7dd;
 }
 .csseditseries:hover {
   cursor: pointer;
