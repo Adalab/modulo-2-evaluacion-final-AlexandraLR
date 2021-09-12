@@ -1,11 +1,5 @@
 :root {
   background-color: #d0cad9;
-}
-
-* {
-  font-family: "Hina Mincho", serif;
-  font-size: 20px;
-  margin-left: 30px;
   --colorone: #cbbfc7;
   --colortwo: #8c6f82;
   --colortitles: #8e577b;
@@ -13,6 +7,12 @@
   --colorthree: #c6d9c3;
   --colorfour: #a9f2a0;
   --colorfive: #728c6f;
+}
+
+* {
+  font-family: "Hina Mincho", serif;
+  font-size: 20px;
+  margin-left: 30px;
 }
 
 body {
@@ -28,6 +28,32 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+/* .favorite-second-series {
+  
+
+} */
+.favorite-image{
+  height: 80px;
+}
+
+.flexboxfav{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  margin-left: 30px;
+  list-style-type: none;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  padding: 20px;
+  padding-bottom: 30px;
+  background-color:rgb(124, 194, 226);
+}
+
+.closeButton{
+  background-color: rgb(124, 194, 226);
+  color: black;
+  border: none;
+  }
 .main-title {
   font-family: "Satisfy", cursive;
   font-size: 70px;
@@ -76,19 +102,15 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column: span 2;
-  align-items: center;
+  align-items: flex-start;
   text-align: justify;
 }
 
 .favseriescss {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  align-items: center;
+  align-items:flex-start;
   text-align: center;
-  justify-content: center;
+  justify-content:flex-start;
   width: 250px;
-  height: 100%;
   background-color: #d0cad9;
 }
 
@@ -97,7 +119,7 @@ body {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   text-align: center;
-  align-items: center;
+  align-items: flex-start;
   width: 60vw;
   height: 100%;
   flex: 1;

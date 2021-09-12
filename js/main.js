@@ -60,6 +60,13 @@ function listenSeries() {
     }
 }
 
+function listenCloseSeries() {
+    const listenCloseSeries = document.querySelectorAll('.js-series-close');
+    for (const seriesFav of listenCloseSeries) {
+        seriesFav.addEventListener('click', handleSeries);
+    }
+}
+
 // Comprobación de si es o no favorito, por ID para usarla después.
 function isFavorite(element) {
     return listSeriesFav.find((fav) => {
@@ -95,16 +102,20 @@ function buildHtmlList(itemSeries)
 
 function buildHtmlListFav(itemSeries)
 {
-    let favClass = 'favorite-series';
-    let imageClass = 'favourite-image';
-    let textClass = 'favourite-text';
+    let favSecondClass = 'favorite-second-series';
+    let imageClass = 'favorite-image';
+    let textClass = 'favorite-text';
 
     let html = '';
-    html += `<li class="js-series csseditseries" id="${itemSeries.show.id}">`;
+    html += `<div class="flexboxfav">`
+    html += `<li class="js-series ${favSecondClass}" id="${itemSeries.show.id}">`;
     // añadido if anidado para que me muestre la imagen default si no tiene imagen de serie
-    html += `<img class="seriesImage ${imageClass}" src="${itemSeries.show.image !== null ? itemSeries.show.image.medium : defaultImagePath}" alt="series image"/>`
+    html += `<img class="${imageClass}" src="${itemSeries.show.image !== null ? itemSeries.show.image.medium : defaultImagePath}" alt="series image"/>`
     html += `<h2 class="csstextseries ${textClass}">${itemSeries.show.name}</h2></li>`
-
+    html += `<button class="js-series-close closeButton">
+    <i class="fas fa-trash-alt"></i>
+  </button></li>`
+    html += `</div>`
     return html;
 }
  
