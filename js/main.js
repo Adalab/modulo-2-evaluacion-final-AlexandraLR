@@ -30,7 +30,7 @@ function getFromApi(event) {
 }
 
 function handleSeries(ev) {
-    const clickedSeries = ev.path[1].id;
+    const clickedSeries = parseInt(ev.currentTarget.id);
 
     // Con el id del elemento clicado buscamos la pelicula en la lista de peliculas
     const clickedElement = listSeries.find((series) => {
@@ -61,6 +61,7 @@ function listenSeries() {
     }
 }
 
+// Funciona igual exactamente que el listen series, solo que este vale para eliminar la tarjeta cuando ya no sea favorito.
 function listenCloseSeries() {
     const listenCloseSeries = document.querySelectorAll('.js-series-close');
     for (const seriesFav of listenCloseSeries) {
@@ -106,14 +107,13 @@ function buildHtmlListFav(itemSeries)
 {
     let favSecondClass = 'favorite-second-series';
     let imageClass = 'favorite-image';
-    let textClass = 'favorite-text';
 
     let html = '';
     html += `<div class="flexboxfav">`
     html += `<li class="js-series ${favSecondClass}" id="${itemSeries.show.id}">`;
     // añadido if anidado para que me muestre la imagen default si no tiene imagen de serie
     html += `<img class="${imageClass}" src="${itemSeries.show.image !== null ? itemSeries.show.image.medium : defaultImagePath}" alt="series image"/>`
-    html += `<h2 class="csstextseries ${textClass}">${itemSeries.show.name}</h2></li>`
+    html += `<h2 class="csstextseries">${itemSeries.show.name}</h2></li>`
     html += `<button class="closeButton js-series-close" id="${itemSeries.show.id}">
     <i class="fas fa-trash-alt"></i>
   </button>`
