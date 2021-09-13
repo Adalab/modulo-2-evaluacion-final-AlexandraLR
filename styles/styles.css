@@ -14,79 +14,19 @@ body {
   max-width: 100%;
 }
 
-.favorite-series {
-  background-color: #900c3f !important;
-  justify-content: center;
-  align-items: center;
-  color: #c9496d;
-}
-
-.leafcss {
-  color: #98c0c7;
-  transform: scale(2);
-  margin-left: 160px;
-}
-
-.favorite-image {
-  height: 100px;
-}
-
-.overlay {
-  position: absolute;
-  height: 0;
-  opacity: 0;
-  transition: 0.3s ease;
-}
-
-.container:hover .overlay {
-  opacity: 1;
-}
-
-.container:hover .image {
-  filter: blur(2px);
-}
-
-.mat-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(35%, -170%);
-  text-align: center;
-  font-size: 130px;
-  color: #900c3f;
-}
-
-.flexboxfav {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin-left: 30px;
-  list-style-type: none;
-  margin-top: 5px;
-  margin-bottom: 20px;
-  padding: 20px;
-  padding-bottom: 30px;
-  background-color: #af8cb6;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  border-radius: 4%;
-}
-
-.closeButton {
-  background-color: #af8cb6;
-  color: black;
-  border: none;
-}
-
-.closeButton:hover {
-  cursor: pointer;
-  transform: scale(1.2);
-}
-
+/* TITULOS SUPERIORES Y BARRA DE BÚSQUEDA */
 .main-title {
   font-family: "Satisfy", cursive;
   font-size: 70px;
   margin-left: 30px;
   margin-top: 20px;
   color: #581845;
+}
+
+.leafcss {
+  color: #98c0c7;
+  transform: scale(2);
+  margin-left: 160px;
 }
 
 .eslogan {
@@ -121,22 +61,7 @@ body {
   border-radius: 4px;
 } */
 
-.reset-button {
-  background-color: #714c72;
-  color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: 4px;
-  justify-content: center;
-}
-
-.reset-button:hover {
-  cursor: pointer;
-  background-color: white;
-  color: #714c72;
-  border: 1px solid #714c72;
-}
-
+/* MIS SERIES FAVORITAS + ICONO ESTRELLA */
 .favourite-title {
   justify-content: center;
   margin-top: 10px;
@@ -153,7 +78,90 @@ body {
   color: #98c0c7;
 }
 
-.flexcontainersfavandseries {
+/* BOTÓN DE RESET DE LA LISTA FAV */
+.reset-button {
+  background-color: #714c72;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  justify-content: center;
+}
+
+.reset-button:hover {
+  cursor: pointer;
+  background-color: white;
+  color: #714c72;
+  border: 1px solid #714c72;
+}
+
+/* CSS SERIE FAVORITA EN EN APARTADO DE SERIES */
+.favorite-series {
+  background-color: #900c3f !important;
+  justify-content: center;
+  align-items: center;
+  color: #c9496d;
+}
+
+/* CSS de los Corazones de Google Materials */
+.overlay {
+  position: absolute;
+  height: 0;
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.container:hover .overlay {
+  opacity: 1;
+}
+
+.container:hover .image {
+  filter: blur(2px);
+}
+
+.mat-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(35%, -170%);
+  text-align: center;
+  font-size: 130px;
+  color: #900c3f;
+}
+
+/* LISTA DE FAVORITOS */
+.favorite-image {
+  height: 100px;
+}
+
+.flexboxfav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-left: 30px;
+  list-style-type: none;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  padding: 20px;
+  padding-bottom: 30px;
+  background-color: #af8cb6;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 4%;
+}
+
+.closeButton {
+  background-color: #af8cb6;
+  color: black;
+  border: none;
+}
+
+.closeButton:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+/* CONTAINERs FAVS Y SERIES */
+
+.containersfavandseries {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column: span 2;
@@ -170,7 +178,7 @@ body {
   margin-right: 10px;
 }
 
-.flexcontainerseries {
+.containerseries {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
@@ -194,10 +202,12 @@ body {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   border-radius: 4%;
 }
+
 .csseditseries:hover {
   cursor: pointer;
   transform: scale(1.1);
 }
+
 .csstextseries {
   margin-top: 10px;
   text-align: center;
