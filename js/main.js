@@ -30,7 +30,7 @@ function getFromApi(event) {
 }
 
 function handleSeries(ev) {
-    const clickedSeries = ev.path[1].id;
+    const clickedSeries = parseInt(ev.currentTarget.id);
 
     // Con el id del elemento clicado buscamos la pelicula en la lista de peliculas
     const clickedElement = listSeries.find((series) => {
@@ -55,12 +55,12 @@ function handleSeries(ev) {
 // LISTENER DE LAS SERIES CLICKADAS
 function listenSeries() {
     const listenSeries = document.querySelectorAll('.js-series');
-    console.log(listenSeries);
     for (const seriesEl of listenSeries) {
         seriesEl.addEventListener('click', handleSeries);
     }
 }
 
+// Funciona igual exactamente que el listen series, solo que este vale para eliminar la tarjeta cuando ya no sea favorito.
 function listenCloseSeries() {
     const listenCloseSeries = document.querySelectorAll('.js-series-close');
     for (const seriesFav of listenCloseSeries) {
@@ -91,33 +91,37 @@ function paintSeries(list, output, isFav) {
 
 function buildHtmlList(itemSeries)
 {
-    let html = '';
     let isFav = isFavorite(itemSeries);
     let favClass = 'favorite-series';
 
-    html += `<li class="js-series ${isFav !== undefined ? favClass : ''} csseditseries" id="${itemSeries.show.id}">`;
-    // añadido if anidado para que me muestre la imagen default si no tiene imagen de serie
-    html += `<img class="seriesImage " src="${itemSeries.show.image !== null ? itemSeries.show.image.medium : defaultImagePath}" alt="series image"/>`
-    html += `<h2 class="csstextseries ">${itemSeries.show.name}</h2></li>`
+    const html= `<li class="js-series ${isFav !== undefined ? favClass : ''} csseditseries" id="${itemSeries.show.id}">
+                    <div class = "container">
+                        <div class = "image">
+                            <img class="seriesImage " src="${itemSeries.show.image !== null ? itemSeries.show.image.medium : defaultImagePath}" alt="series image"/>
+                            <h2 class="csstextseries ">${itemSeries.show.name}</h2>
+                        </div>
+                        <div class = "overlay">
+                            <span class="material-icons mat-icon">${isFav !== undefined ? 'favorite_border' : 'favorite'}</span>
+                        </div>
+                    </div>
+                </li>`
     return html;
-}
+}   
 
 function buildHtmlListFav(itemSeries)
 {
     let favSecondClass = 'favorite-second-series';
     let imageClass = 'favorite-image';
-    let textClass = 'favorite-text';
 
-    let html = '';
-    html += `<div class="flexboxfav">`
-    html += `<li class="js-series ${favSecondClass}" id="${itemSeries.show.id}">`;
-    // añadido if anidado para que me muestre la imagen default si no tiene imagen de serie
-    html += `<img class="${imageClass}" src="${itemSeries.show.image !== null ? itemSeries.show.image.medium : defaultImagePath}" alt="series image"/>`
-    html += `<h2 class="csstextseries ${textClass}">${itemSeries.show.name}</h2></li>`
-    html += `<button class="closeButton js-series-close" id="${itemSeries.show.id}">
-    <i class="fas fa-trash-alt"></i>
-  </button>`
-    html += `</div>`
+    let html = `<div class="flexboxfav">
+                    <li class="js-series ${favSecondClass}" id="${itemSeries.show.id}">
+                        <img class="${imageClass}" src="${itemSeries.show.image !== null ? itemSeries.show.image.medium : defaultImagePath}" alt="series image"/>
+                        <h2 class="csstextseries">${itemSeries.show.name}</h2>
+                    </li>
+                    <button class="closeButton js-series-close" id="${itemSeries.show.id}">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>`
     return html;
 }
  
@@ -135,7 +139,7 @@ function buildListFav (){
 function storageListFav (){
     localStorage.setItem(keyStorageFav, JSON.stringify(listSeriesFav));
     paintSeries( listSeriesFav, outputFavList, true ); 
-    paintSeries( listSeries, seriesContainer ); 
+    paintSeries( listSeries, seriesContainer, false ); 
 }
 
 
@@ -143,12 +147,13 @@ function storageListFav (){
 function cleanLS (){
     //Añadimos pantalla de verificación de borrado de datos de localstorage
     let buttonConfirm = confirm("¿Está seguro de que desea eliminar toda la lista de favoritos?");
-    // Para que no siga borrando al darle a cancelar al pop up, le ponemos return en void, eso nos saca de la función sin cumplir lo siguiente
-    if (!buttonConfirm) return;
-    localStorage.removeItem(keyStorageFav);
-    listSeriesFav = [];
-    paintSeries( listSeriesFav, outputFavList, true );
-    paintSeries( listSeries, seriesContainer, false );  
+    // Para que borre si se le da a aceptar
+    if (buttonConfirm) {
+        localStorage.removeItem(keyStorageFav);
+        listSeriesFav = [];
+        paintSeries( listSeriesFav, outputFavList, true );
+        paintSeries( listSeries, seriesContainer, false );  
+    }
 }
 
 
