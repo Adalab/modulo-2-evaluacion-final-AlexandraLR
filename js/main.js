@@ -9,6 +9,7 @@ const eraseFavs = document.querySelector('.js_resetfavs');
 
 const defaultImagePath = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
 
+// Constante de la key del LS.
 const keyStorageFav = 'listFav';
 
 let inputValue = ''; 
