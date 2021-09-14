@@ -6,6 +6,8 @@ const inputSearch = document.querySelector('.js_searchfieldinput');
 // const buttonSearch = document.querySelector('.js_searchbutton');
 const buttonReset = document.querySelector('.js_resetfavs');
 const eraseFavs = document.querySelector('.js_resetfavs');
+const countFavs = document.querySelector('.js_countfavs');
+const seriesRecomended = document.querySelector('.js_seriesrecomended');
 
 const defaultImagePath = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
 
@@ -101,6 +103,7 @@ function buildHtmlList(itemSeries)
                             <img class="seriesImage " src="${itemSeries.show.image !== null ? itemSeries.show.image.medium : defaultImagePath}" alt="series image"/>
                             <h2 class="csstextseries ">${itemSeries.show.name}</h2>
                         </div>
+                        <li>"${itemSeries.show.language}"</li>
                         <div class = "overlay">
                             <span class="material-icons mat-icon">${isFav !== undefined ? 'favorite_border' : 'favorite'}</span>
                         </div>
@@ -108,6 +111,8 @@ function buildHtmlList(itemSeries)
                 </li>`
     return html;
 }   
+
+
 
 function buildHtmlListFav(itemSeries)
 {
@@ -120,12 +125,38 @@ function buildHtmlListFav(itemSeries)
                         <h2 class="csstextseries">${itemSeries.show.name}</h2>
                     </li>
                     <button class="closeButton js-series-close" id="${itemSeries.show.id}">
+                    <button class="js_countfavs Favorite List" id="${itemSeries.show.id}">
                         <i class="fas fa-trash-alt"></i>
                     </button>
                 </div>`
     return html;
 }
  
+// EJERCICIOS ENTREVISTA PERSONAL
+// 1.
+// dado el array de lenguajes, creo uno nuevo para el de series recomendadas (ListaRecomendadas) dentro del método serieRecomended. Al pulsar el botón "series recomendada" tras hacer la búsqueda, este recorre el array de pelis que salen en la búsqueda con el for, si alguna de ellas contiene uno de los tres idiomas que salen en el array serieRecomend (esta parte la "filtra" un if con el índice del array serieRecomend), le hace push a la lista recomendada y lo muestra por consola.
+
+let serieRecomend =[ 'English', 'Spanish', 'Portuguese' ];
+
+function serieRecomended (){
+    let listaRecomendadas = [];
+        for (const item of listSeries) 
+        { 
+            const language = item.show.language;
+            if(language == serieRecomend[0] || language == serieRecomend[1] || language == serieRecomend[2] ) 
+            {
+                listaRecomendadas.push(item);
+            } 
+            
+        };
+    console.log (listaRecomendadas);
+}
+
+// 2. 
+function countingFavs() {
+    console.log (listSeriesFav.length);
+}
+
 //SACAR DEL LOCAL STORAGE AL INICIALIZAR LA PÁGINA
 function buildListFav (){
     let ls = localStorage.getItem(keyStorageFav);
@@ -161,4 +192,6 @@ function cleanLS (){
 // para que vayan saliendo las series conforme escribes, que queda más guay que el botón de buscar.
 inputSearch.addEventListener ('keyup', getFromApi );
 buttonReset.addEventListener ('click', cleanLS );
+countFavs.addEventListener ('click', countingFavs );
+seriesRecomended.addEventListener ('click', serieRecomended );
 buildListFav();
