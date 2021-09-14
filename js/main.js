@@ -146,6 +146,7 @@ function serieRecomended (){
             if(language == serieRecomend[0] || language == serieRecomend[1] || language == serieRecomend[2] ) 
             {
                 listaRecomendadas.push(item);
+                console.log(item.show.name)
             } 
             
         };
