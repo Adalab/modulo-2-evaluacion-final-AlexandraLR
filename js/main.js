@@ -103,7 +103,7 @@ function buildHtmlList(itemSeries)
                             <img class="seriesImage " src="${itemSeries.show.image !== null ? itemSeries.show.image.medium : defaultImagePath}" alt="series image"/>
                             <h2 class="csstextseries ">${itemSeries.show.name}</h2>
                         </div>
-                        <li>"${itemSeries.show.language}"</li>
+                        // <li>"${itemSeries.show.language}"</li>
                         <div class = "overlay">
                             <span class="material-icons mat-icon">${isFav !== undefined ? 'favorite_border' : 'favorite'}</span>
                         </div>
